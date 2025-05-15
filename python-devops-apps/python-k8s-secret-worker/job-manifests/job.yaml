@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: secret-reader-job
+spec:
+  template:
+    spec:
+      serviceAccountName: secret-reader
+      containers:
+      - name: secret-reader
+        image: your-docker-repo/your-image-name:your-tag # <---------------- HERE
+      restartPolicy: Never

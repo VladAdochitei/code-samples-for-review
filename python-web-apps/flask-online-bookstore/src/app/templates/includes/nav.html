@@ -1,0 +1,32 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('store.home') }}">Bookstore</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="inactive"><a href="{{ url_for('store.home') }}">Home</a></li>
+          <li><a href="{{ url_for('store.books') }}">View books</a></li>
+          <li><a href="{{ url_for('store.categories') }}">View categories</a></li>
+
+          {% if current_user.role=="admin" %}
+          <li><a href="{{ url_for('store.create_book') }}">Add Book</a></li>
+          <li><a href="{{ url_for('store.create_category') }}">Add Category</a></li>
+          <li><a href="{{ url_for('store.orders') }}">Orders</a></li>
+          {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('auth.account') }}">Account</a></li>
+          {% if current_user.role!="admin" %}
+          <li><a href="{{ url_for('store.view_cart') }}">View Cart</a></li>
+          {% endif %}
+          <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+          {% else %}
+          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+          <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>

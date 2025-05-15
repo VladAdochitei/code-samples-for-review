@@ -1,0 +1,15 @@
+{% extends 'home.html' %} 
+ 
+{% block container %} 
+  <div class="top-pad">
+    <img src="{{ url_for('static', filename='uploads/' + book.image_path) }}"/>  
+    <h1>{{ book.name }}<small> {{ book.category.name }}</small></h1> 
+    <h3>{{ book.price }}</h3> 
+
+    {% if current_user.role!="admin" %}
+    <form action="{{ url_for('store.add_to_cart', book_id=book.id) }}" method="post" style="display: inline;">
+      <button type="submit">Add to Cart</button>
+    </form>
+    {% endif %}
+  </div> 
+{% endblock %} 

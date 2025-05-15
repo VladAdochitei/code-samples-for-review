@@ -1,0 +1,16 @@
+{% extends 'home.html' %} 
+ 
+{% block container %} 
+  <div class="top-pad"> 
+    <h2>{{ category.name }}</h2> 
+    <div class="well"> 
+      {% for book in category.books %} 
+        <h3> 
+          <img src="{{ url_for('static', filename='uploads/' + book.image_path) }}" style="width:10%;"/>
+          <a href="{{ url_for('store.book', id=book.id) }}">{{ book.name }}</a> 
+          <small>$ {{ book.price }}</small> 
+        </h3> 
+      {% endfor %} 
+    </div> 
+  </div> 
+{% endblock %} 

@@ -1,0 +1,12 @@
+{% extends 'home.html' %} 
+ 
+{% block container %} 
+  <div class="top-pad"> 
+    <h1> Categories: </h1>
+    {% for category in categories %} 
+    <a href="{{ url_for('store.category', id=category.id) }}"> 
+      <h2>{{ category.name }}</h2> 
+    </a> 
+    {% endfor %} 
+  </div> 
+{% endblock %} 

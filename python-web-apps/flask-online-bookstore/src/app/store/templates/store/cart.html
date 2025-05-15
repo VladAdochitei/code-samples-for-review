@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+
+{% block container %} 
+  <h1>Shopping Cart</h1>
+  <ul>
+    {% for book_id in cart %}
+      {% set book = get_book(book_id) %}
+      <li>
+        <img src="{{ url_for('static', filename='uploads/' + book.image_path) }}" style="width: 10%;"/>
+        {{ book.name }} - ${{ book.price }}
+      </li>
+    {% endfor %}
+  </ul>
+  <p>Total Price: ${{ calculate_total_price(cart) }}</p>
+  <p><a href="{{ url_for('store.clear_cart') }}">Clear Cart</a></p>
+
+  <br>
+  <a href="{{ url_for('store.checkout') }}" class="btn btn-success">Checkout</a>
+{% endblock %}
